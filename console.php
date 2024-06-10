@@ -68,12 +68,28 @@
         fclose($myfile);
 
         $xml = new SimpleXMLElement('<root/>');
+        // $workers = array_flip($workers);
         array_walk_recursive($workers, array ($xml, 'addChild'));
         print $xml->asXML();
         
+        $myfile = fopen("xml/export.xml", "w+");
+        fwrite($myfile, $xml->asXML());
+        fclose($myfile);
+
+        $fp = fopen('persons.csv', 'w'); 
+        
+        // Loop through file pointer and a line 
+        // foreach ($workers as $fields) { 
+        fputcsv($fp, $workers, " "); 
+        // } 
+        
+        fclose($fp); 
+
     } catch (Exception $e) {
         print('Error: '. $e->getMessage());
     }
 
     print("Path to save file: .$pathtosave/export.$type \n");
+
+    var_dump($workers);
 ?>
