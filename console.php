@@ -53,9 +53,6 @@
                                 mkdir($pathtosave,0777, true);
                             }
                     }
-                    else {
-                        $pathtosave = '.';
-                    }
                     
                     break;  
             }
@@ -90,6 +87,6 @@
     }
 
     print("Path to save file: .$pathtosave/export.$type \n");
-
+    
     var_dump($workers);
 ?>
